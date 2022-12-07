@@ -35,4 +35,47 @@ public class Booking {
 
     @Column
     private boolean withLocker;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public ApplicationUser getApplicationUser() {
+        return applicationUser;
+    }
+
+    public void setApplicationUser(ApplicationUser applicationUser) {
+        this.applicationUser = applicationUser;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public Set<Duration> getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Set<Duration> duration) {
+        this.duration = duration;
+    }
+
+    public boolean isWithLocker() {
+        return withLocker;
+    }
+
+    public void setWithLocker(boolean withLocker) {
+        this.withLocker = withLocker;
+    }
+
+    //getters and setters
+    
 }
