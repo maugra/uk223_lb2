@@ -39,8 +39,8 @@ public class ApplicationUser {
     @Column(nullable = false)
     private Role role;
 
-    @OneToMany(mappedBy = "booking")
-    @JsonIgnoreProperties("booking")
+    @OneToMany(mappedBy = "applicationUser")
+    @JsonIgnoreProperties("applicationUser")
     @Fetch(FetchMode.JOIN)
     private Set<Booking> bookings;
     
