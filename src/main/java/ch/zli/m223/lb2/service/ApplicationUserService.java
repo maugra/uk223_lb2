@@ -1,6 +1,7 @@
 package ch.zli.m223.lb2.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -37,5 +38,13 @@ public class ApplicationUserService {
     public void deleteUser(Long id) {
         var applicationUser = entityManager.find(ApplicationUser.class, id);
         entityManager.remove(applicationUser);
+    }
+
+    public Optional<ApplicationUser> findByEmail(String email) {
+        return entityManager
+                .createNamedQuery("ApplicationUser.findByEmail", ApplicationUser.class)
+                .setParameter("email", email)
+                .getResultStream()
+                .findFirst();
     }
 }
