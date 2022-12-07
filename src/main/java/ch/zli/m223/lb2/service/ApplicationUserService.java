@@ -22,7 +22,8 @@ public class ApplicationUserService {
 
     public List<ApplicationUser> findAll() {
         var query = entityManager.createQuery("FROM ApplicationUser", ApplicationUser.class);
-        return query.getResultList();    }
+        return query.getResultList();    
+    }
 
     public ApplicationUser getMember(Long id) {
         return entityManager.find(ApplicationUser.class, id);
@@ -34,7 +35,7 @@ public class ApplicationUserService {
     }
 
     public void deleteUser(Long id) {
-        var applicationUser =entityManager.find(ApplicationUser.class, id);
+        var applicationUser = entityManager.find(ApplicationUser.class, id);
         entityManager.remove(applicationUser);
     }
 }
