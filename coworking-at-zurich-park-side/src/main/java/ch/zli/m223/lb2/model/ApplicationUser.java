@@ -1,8 +1,14 @@
 package ch.zli.m223.lb2.model;
 
+import java.util.Set;
+
 import javax.persistence.*;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Fetch;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @NamedQueries({
@@ -32,6 +38,11 @@ public class ApplicationUser {
 
     @Column(nullable = false)
     private Role role;
+
+    @OneToMany(mappedBy = "booking")
+    @JsonIgnoreProperties("booking")
+    @Fetch(FetchMode.JOIN)
+    private Set<Booking> bookings;
     
     //getters and setters
     public Long getId() {
@@ -90,5 +101,11 @@ public class ApplicationUser {
         this.role = role;
     }
 
-    
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
+    }
 }
