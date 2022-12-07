@@ -5,8 +5,6 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 
-import org.hibernate.Session;
-
 import com.oracle.svm.core.annotate.Inject;
 
 import ch.zli.m223.lb2.model.Booking;
