@@ -5,11 +5,10 @@
 2. start the project with 'Quarkus: Debug current Quarkus project'
 
 ## Änderungen
-### Models
-#### Booking
+### Booking
+#### model
 * renamed property locker to withLocker
-#### ApplicationUser
-* 
-### Services
-#### BookingService
+#### controller
+
+### ApplicationUser
 * 
