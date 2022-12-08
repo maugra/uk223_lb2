@@ -48,6 +48,15 @@ public class TestDataService {
     userB.setRole(Role.MEMBER);
     entityManager.persist(userB);
 
+    var userC = new ApplicationUser();
+    userC.setFirstname("Markus");
+    userC.setLastname("Müller");
+    userC.setNickname("Robinsky");
+    userC.setPassword("Passw0rd");
+    userC.setEmail("mueller@example.com");
+    userC.setRole(Role.MEMBER);
+    entityManager.persist(userC);
+
     var admin = new ApplicationUser();
     admin.setFirstname("Maurus");
     admin.setLastname("Graf");
