@@ -58,7 +58,6 @@ public class BookingController {
 
     @Path("/{id}")
     @PUT
-    @RolesAllowed({"Admin"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(

@@ -1,6 +1,8 @@
 package ch.zli.m223.lb2;
 
-import org.junit.jupiter.api.AfterEach;
+import io.quarkus.test.security.TestSecurity;
+import io.quarkus.test.security.jwt.Claim;
+import io.quarkus.test.security.jwt.JwtSecurity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +15,10 @@ import io.quarkus.test.junit.QuarkusTest;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
+@TestSecurity(user = "flurin@example.com", roles = { "Admin" })
+@JwtSecurity(claims = {
+        @Claim(key = "upn", value = "flurin@examle.com")
+})
 @QuarkusTest
 public class ApplicationUserResourceTest {
   @Inject
@@ -45,5 +51,19 @@ public class ApplicationUserResourceTest {
         .when().post("/members")
         .then()
         .statusCode(200);
+  }
+  @Test
+  void testCreateUserWithWeakPassword(){
+    var user = new ApplicationUser();
+    user.setFirstname("Max");
+    user.setLastname("Mustermann");
+    user.setEmail("max@example.com");
+    user.setNickname("Maxl");
+    user.setPassword("1234");
+    user.setRole(Role.MEMBER);
+    given().header("Content-Type", "application/json").body(user)
+            .when().post("/members")
+            .then()
+            .statusCode(400);
   }
 }
