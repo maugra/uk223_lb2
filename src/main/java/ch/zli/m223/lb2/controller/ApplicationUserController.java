@@ -1,6 +1,7 @@
 package ch.zli.m223.lb2.controller;
 
 import ch.zli.m223.lb2.model.ApplicationUser;
+import ch.zli.m223.lb2.model.exception.ConflicException;
 import ch.zli.m223.lb2.service.ApplicationUserService;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 
@@ -30,7 +31,7 @@ public class ApplicationUserController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(summary = "Creates a new user. Also known as registration.", description = "Creates a new user and returns the newly added user.")
-    public ApplicationUser createUser(ApplicationUser applicationUser) {
+    public ApplicationUser createUser(ApplicationUser applicationUser) throws ConflicException {
         return applicationUserService.createUser(applicationUser);
     }
 
