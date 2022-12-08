@@ -24,8 +24,13 @@ public class TestDataService {
   @Inject
   EntityManager entityManager;
 
+  void onStartup(@Observes StartupEvent event){
+    generateTestData();
+  }
+
   @Transactional
-  void generateTestData(@Observes StartupEvent event) {
+  public void generateTestData() {
+
     var userA = new ApplicationUser();
     userA.setFirstname("Flurin");
     userA.setLastname("Graf");
@@ -33,7 +38,7 @@ public class TestDataService {
     userA.setPassword("Passw0rd");
     userA.setEmail("flurin@example.com");
     userA.setRole(Role.MEMBER);
-    //entityManager.persist(userA);
+    entityManager.persist(userA);
 
     var userB = new ApplicationUser();
     userB.setFirstname("Robin");
@@ -42,7 +47,7 @@ public class TestDataService {
     userB.setPassword("Passw0rd");
     userB.setEmail("robinsky@example.com");
     userB.setRole(Role.MEMBER);
-    //entityManager.persist(userB);
+    entityManager.persist(userB);
 
     var admin = new ApplicationUser();
     admin.setFirstname("Maurus");
@@ -50,20 +55,20 @@ public class TestDataService {
     admin.setPassword("AdminPassw0rd");
     admin.setEmail("maurus@example.com");
     admin.setRole(Role.ADMIN);
-    //entityManager.persist(admin);
+    entityManager.persist(admin);
 
     var bookingA = new Booking();
     bookingA.setApplicationUser(userA);
     bookingA.setDate(LocalDate.now().plusDays(1));
     bookingA.setWithLocker(true);
     bookingA.setDuration(Set.of(Duration.AFTERNOON));
-    //entityManager.persist(bookingA);
+    entityManager.persist(bookingA);
 
     var bookingB = new Booking();
     bookingB.setApplicationUser(userB);
     bookingB.setDate(LocalDate.now().plusDays(2));
     bookingB.setWithLocker(false);
     bookingB.setDuration(Set.of(Duration.MORNING, Duration.AFTERNOON));
-    //entityManager.persist(bookingB);
+    entityManager.persist(bookingB);
   }
 }  
