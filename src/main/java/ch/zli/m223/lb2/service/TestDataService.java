@@ -5,10 +5,9 @@ import java.util.Set;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-
-import com.oracle.svm.core.annotate.Inject;
 
 import ch.zli.m223.lb2.model.ApplicationUser;
 import ch.zli.m223.lb2.model.Booking;
@@ -21,6 +20,9 @@ import io.quarkus.runtime.StartupEvent;
 @IfBuildProfile("dev")
 @ApplicationScoped
 public class TestDataService {
+
+  @Inject
+  EntityManager entityManager;
 
   @Transactional
   void generateTestData(@Observes StartupEvent event) {

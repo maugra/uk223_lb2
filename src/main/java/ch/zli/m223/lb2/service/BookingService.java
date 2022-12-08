@@ -5,7 +5,7 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 
-import com.oracle.svm.core.annotate.Inject;
+import javax.inject.Inject;
 
 import ch.zli.m223.lb2.model.Booking;
 
