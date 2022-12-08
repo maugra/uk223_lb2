@@ -30,7 +30,6 @@ public class TestDataService {
 
   @Transactional
   public void generateTestData() {
-
     var userA = new ApplicationUser();
     userA.setFirstname("Flurin");
     userA.setLastname("Graf");
