@@ -6,6 +6,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import ch.zli.m223.lb2.model.Booking;
 
@@ -15,7 +16,7 @@ public class BookingService {
     EntityManager entityManager;
     @Inject
     ApplicationUserService applicationUserService;
-
+    @Transactional
     public Booking createBooking(Booking booking) {
         return entityManager.merge(booking);
     }
@@ -29,7 +30,6 @@ public class BookingService {
         booking.setId(id);
         return entityManager.merge(booking);
     }
-
     public void deleteBooking(Long id) {
         var booking = entityManager.find(Booking.class, id);
         entityManager.remove(booking);
