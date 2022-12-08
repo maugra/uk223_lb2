@@ -1,9 +1,11 @@
 package ch.zli.m223.lb2.controller;
 
-import javax.ws.rs.Produces;
+import ch.zli.m223.lb2.model.Booking;
+import ch.zli.m223.lb2.service.BookingService;
+import org.eclipse.microprofile.openapi.annotations.Operation;
 
-import java.util.List;
-
+import javax.annotation.security.RolesAllowed;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -11,20 +13,15 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
-import org.eclipse.microprofile.openapi.annotations.Operation;
-
-import javax.inject.Inject;
-
-import ch.zli.m223.lb2.model.Booking;
-import ch.zli.m223.lb2.service.BookingService;
+import java.util.List;
 
 @Path("/bookings")
+@RolesAllowed({ "Member", "Admin" })
 public class BookingController {
     @Inject
     BookingService bookingService;
-
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -37,6 +34,7 @@ public class BookingController {
     }
 
     @GET
+    @RolesAllowed({"Admin"})
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(
         summary = "returns all bookings",
@@ -48,6 +46,7 @@ public class BookingController {
 
     @Path("/users/{id}")
     @GET
+    @RolesAllowed({"Admin"})
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(
         summary = "returns the bookings of a user",
@@ -59,6 +58,7 @@ public class BookingController {
 
     @Path("/{id}")
     @PUT
+    @RolesAllowed({"Admin"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(
@@ -71,6 +71,7 @@ public class BookingController {
 
     @Path("/accept/{id}")
     @PUT
+    @RolesAllowed({"Admin"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(
@@ -83,6 +84,7 @@ public class BookingController {
 
     @Path("/decline/{id}")
     @PUT
+    @RolesAllowed({"Admin"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(
@@ -95,6 +97,7 @@ public class BookingController {
 
     @Path("/cancel/{id}")
     @PUT
+    @RolesAllowed({"Member"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(
@@ -107,6 +110,7 @@ public class BookingController {
 
     @Path("/{id}")
     @DELETE
+    @RolesAllowed({"Admin"})
     @Operation(
         summary = "deletes a booking ",
         description = "deletes a booking by its id"
