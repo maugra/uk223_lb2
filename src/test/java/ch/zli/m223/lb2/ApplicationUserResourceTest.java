@@ -100,12 +100,12 @@ public class ApplicationUserResourceTest {
 	@Test
 	void testDeleteUserById() {
 		given()
-                .when().delete("/members/3");
-      given()
-              .when().get("/members")
-              .then()
-              .statusCode(200)
-              .body("size()", is(3));
+				.when().delete("/members/3");
+		given()
+				.when().get("/members")
+				.then()
+				.statusCode(200)
+				.body("size()", is(3));
 
 	}
 }
