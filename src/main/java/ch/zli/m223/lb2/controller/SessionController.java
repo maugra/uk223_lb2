@@ -16,7 +16,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import ch.zli.m223.lb2.model.Credential;
 import ch.zli.m223.lb2.service.SessionService;
 
-@Path("/session")
+@Path("/login")
 @Tag(name = "Session", description = "Handling of sessions")
 @PermitAll
 public class SessionController {
@@ -27,7 +27,7 @@ public class SessionController {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Operation(summary = "Authenticate a user.", description = "Returns a token upon successful authentication.")
-  public Response create(@Valid Credential credential) {
+  public Response login(@Valid Credential credential) {
     return this.sessionService.authenticate(credential);
   }
 }
