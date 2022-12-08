@@ -52,7 +52,7 @@ public class ApplicationUserService {
         applicationUser.setId(id);
         return entityManager.merge(applicationUser);
     }
-
+    @Transactional
     public void deleteUser(Long id) {
         var applicationUser = entityManager.find(ApplicationUser.class, id);
         entityManager.remove(applicationUser);
