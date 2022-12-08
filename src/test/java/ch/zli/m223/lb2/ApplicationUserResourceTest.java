@@ -18,7 +18,7 @@ public class ApplicationUserResourceTest {
   TestDataService testDataService;
 
   @BeforeEach
-  void resetDB() {
+  void resetDB(){
     testDataService.generateTestData();
   }
 

@@ -8,7 +8,7 @@ import java.util.Optional;
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.core.Response;
 
-import com.oracle.svm.core.annotate.Inject;
+import javax.inject.Inject;
 
 import ch.zli.m223.lb2.model.ApplicationUser;
 import ch.zli.m223.lb2.model.Credential;

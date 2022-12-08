@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
 
-import com.oracle.svm.core.annotate.Inject;
+import javax.inject.Inject;
 
 import ch.zli.m223.lb2.model.ApplicationUser;
 import ch.zli.m223.lb2.service.ApplicationUserService;
