@@ -18,6 +18,7 @@ public class TestDataService {
     @Inject
     EntityManager entityManager;
 
+    @Transactional
     void resetDB() {
         entityManager.createNativeQuery("SET REFERENTIAL_INTEGRITY FALSE").executeUpdate();
         entityManager.createNativeQuery("TRUNCATE TABLE booking RESTART IDENTITY").executeUpdate();

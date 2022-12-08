@@ -1,5 +1,6 @@
 package ch.zli.m223.lb2;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,7 @@ public class ApplicationUserResourceTest {
 
   @BeforeEach
   void resetDB(){
-    testDataService.generateTestData();
+    testDataService.resetDB();
   }
 
   @Test
@@ -40,7 +41,7 @@ public class ApplicationUserResourceTest {
     user.setNickname("Maxl");
     user.setPassword("Passw0rd");
     user.setRole(Role.MEMBER);
-    given().body(user)
+    given().header("Content-Type", "application/json").body(user)
         .when().post("/members")
         .then()
         .statusCode(200);
